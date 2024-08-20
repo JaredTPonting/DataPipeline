@@ -3,4 +3,4 @@ project(DataProcessingPipeline)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(DataProcessingPipeline main.cpp)
+add_executable(Pipeline main.cpp)
