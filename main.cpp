@@ -42,8 +42,38 @@ std::vector<DataRow> readData(const std::string& filename) {
     return data;
 }
 
+
+std::vector<DataRow> filterData(const std::vector<DataRow>& data, double threshold) {
+    std::vector<DataRow> result;
+
+    for (const auto& row : data) {
+        if (row.value > threshold) {
+            result.push_back(row);
+        }
+    }
+    return result;
+}
+
+double sumValues(const std::vector<DataRow>& data) {
+    double sum = 0;
+    for (const auto& row : data) {
+        sum += row.value;
+    }
+    return sum;
+}
+
+
 int main() {
     std::vector<DataRow> data = readData("data.csv");
     std::cout << "Loaded " << data.size() << " rows." << std::endl;
+
+    double minValue = 98.0;
+
+    auto filteredData = filterData(data, minValue);
+    std::cout << "Filtered " << filteredData.size() << " rows with value > " << minValue << std::endl;
+
+    double sum = sumValues(filteredData);
+    std::cout << "Sum of filtered values: " << sum << std::endl;
+
     return 0;
 }
